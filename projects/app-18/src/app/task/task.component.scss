@@ -1,0 +1,43 @@
+.full-width-table {
+  width: 100%;
+}
+tr.element-row:nth-child(even) {
+  background: rgba(83, 42, 124, 0.048);
+}
+tr.element-row:hover {
+  background: #7efafa;
+}
+tr.header-row {
+  background: #97e5f8;
+}
+tr.select-row {
+  background: hsl(332, 93%, 74%);
+}
+
+.add-icon {
+  position: fixed;
+  cursor: pointer;
+  right: 50%;
+  bottom: 14px;
+  z-index: 99;
+  opacity: 0.7;
+}
+.add-icon:hover {
+  opacity: 1;
+}
+.del-icon {
+  margin-left: auto;
+  // color: rgba(108, 227, 133, 0.8);
+  color: #1976d2;
+  background-color: transparent;
+}
+.mat-mdc-unelevated-button.mat-primary,
+.mat-mdc-raised-button.mat-primary,
+.mat-mdc-fab.mat-primary,
+.mat-mdc-mini-fab.mat-primary {
+  background-color: rgba(24, 235, 70, 0.8);
+}
+.spinner-container {
+  display: flex;
+  justify-content: center;
+}

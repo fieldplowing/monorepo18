@@ -1,0 +1,52 @@
+<div #scrollRef class="mat-elevation-z2">
+  <table
+    mat-table
+    class="full-width-table"
+    matSort
+    matSortDisableClear
+    aria-label="Elements"
+  >
+    <!-- Column td -->
+    @for (c of columDef; track c; let i = $index) {
+      <ng-container [matColumnDef]="c.def">
+        @switch (c.def) {
+          @case ("id") {
+            <th mat-header-cell *matHeaderCellDef>{{ c.name }}</th>
+            <td mat-cell *matCellDef="let row; index as i">
+              {{ paginator.pageSize * paginator.pageIndex + i + 1 }}
+            </td>
+          }
+          @case ("delete") {
+            <th mat-header-cell *matHeaderCellDef>{{ c.name }}</th>
+            <td mat-cell *matCellDef="let row">{{ row[c.def] }}</td>
+          }
+          @default {
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ c.name }}
+            </th>
+            <td mat-cell *matCellDef="let row">{{ row[c.def] }}</td>
+          }
+        }
+      </ng-container>
+    }
+    <!-- Column tr -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr
+      mat-row
+      (click)="clickRow(row.id)"
+      *matRowDef="let row; columns: displayedColumns"
+      [class.element-row]="row.id !== status.SelectedRow"
+      [class.select-row]="row.id === status.SelectedRow"
+    ></tr>
+  </table>
+
+  <mat-paginator
+    #paginator
+    [length]="status.Data.length"
+    [pageIndex]="status.PageIndex"
+    [pageSize]="status.PageSize"
+    [pageSizeOptions]="status.PageSizeOptions"
+    aria-label="Select page"
+  >
+  </mat-paginator>
+</div>

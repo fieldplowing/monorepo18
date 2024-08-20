@@ -21,7 +21,7 @@ $dark-theme: m3-theme.$dark-theme; // $light-theme or $dark-theme
   // Components themes
   @include navi-component.theme($theme);
   // Add backwards compatibility styles for color variants
-  // @include mat.color-variants-backwards-compatibility($theme);
+  @include mat.color-variants-backwards-compatibility($theme);
 
   // @include mat.core-theme(m3-theme.$light-theme);
   // @include mat.sidenav-theme(m3-theme.$light-theme);

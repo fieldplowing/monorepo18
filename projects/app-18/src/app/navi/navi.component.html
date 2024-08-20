@@ -1,38 +1,44 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav
-    #drawer
-    class="sidenav"
-    fixedInViewport
-    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'"
-    [opened]="(isHandset$ | async) === false"
-  >
-    <mat-toolbar>Menu</mat-toolbar>
-    <mat-nav-list>
-      <a mat-list-item href="#">Link 1</a>
-      <a mat-list-item href="#">Link 2</a>
-      <a mat-list-item href="#">Link 3</a>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      @if (isHandset$ | async) {
-        <button
-          type="button"
-          aria-label="Toggle sidenav"
-          mat-icon-button
-          (click)="drawer.toggle()"
-        >
-          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-        </button>
-      }
-      <span>app-18</span>
-    </mat-toolbar>
-    <!-- Add Content Here -->
-    <div class="sidenav-scroll-wrapper">
-      <div class="sidenav-content">
-        <ng-content></ng-content>
-      </div>
+<div class="example-container">
+  <mat-toolbar class="example-toolbar">
+    @if (isHandset$ | async) {
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+    }
+    <span>app-18</span>
+  </mat-toolbar>
+  <mat-sidenav-container class="sexample-sidenav-container">
+    <mat-sidenav
+      #drawer
+      class="sidenav"
+      fixedTopGap="200"
+      fixedBottomGap="150"
+      fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false"
+    >
+      <!-- <mat-toolbar>Menu</mat-toolbar> -->
+      <mat-nav-list>
+        <a mat-list-item [routerLink]="['/']">first</a>
+        <a mat-list-item [routerLink]="['/second']">second</a>
+        <a mat-list-item [routerLink]="['/form']">form</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <!-- Add Content Here ※mat-sidenav-container内はtable行ヘッダのstickyが無効となる。-->
+      <!-- <app-list /> -->
+      <!-- <router-outlet /> -->
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  <div class="sidenav-scroll-wrapper">
+    <div class="sidenav-content">
+      <router-outlet />
     </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+  </div>
+</div>
