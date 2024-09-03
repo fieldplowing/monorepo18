@@ -1,16 +1,11 @@
-import { Component, inject, ViewChild } from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Component, ViewChild } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavContent, MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
-import { Observable } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { TaskComponent } from '../task/task.component';
-import { ListComponent } from '../list/list.component';
 
 @Component({
   selector: 'app-navi',
@@ -25,19 +20,19 @@ import { ListComponent } from '../list/list.component';
     MatIconModule,
     AsyncPipe,
     RouterLink,
+    // outletを指定する場合
     RouterOutlet,
-    TaskComponent,
-    ListComponent,
   ],
 })
 export class NaviComponent {
   @ViewChild(MatSidenavContent) drawer!: MatSidenavContent;
-  private breakpointObserver = inject(BreakpointObserver);
+  // 事前に設定した画面サイズHandsetの変更をObservableで受け取ることができます。
+  // private breakpointObserver = inject(BreakpointObserver);
 
-  isHandset$: Observable<boolean> = this.breakpointObserver
-    .observe(Breakpoints.Handset)
-    .pipe(
-      map((result) => result.matches),
-      shareReplay(),
-    );
+  // isHandset$: Observable<boolean> = this.breakpointObserver
+  //   .observe(Breakpoints.Handset)
+  //   .pipe(
+  //     map((result) => result.matches),
+  //     shareReplay(),
+  //   );
 }

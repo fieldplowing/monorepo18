@@ -1,17 +1,32 @@
 @use "@angular/material" as mat;
 
 @mixin theme($theme) {
-  .sidenav-scroll-wrapper {
-    background-color: rgba(
-      mat.get-theme-color($theme, primary-container),
-      0.75
-    );
+  .m3-button {
+    /*$color-variantの確認済みボタン*/
+    @include mat.button-color($theme, $color-variant: secondary);
+    @include mat.icon-color($theme, $color-variant: tertiary);
   }
-  .sidenav-content {
-    @media (pointer: fine) {
-      &::-webkit-scrollbar-thumb {
-        background-color: mat.get-theme-color($theme, primary);
-      }
-    }
+  .navi-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    // padding: 0 8px;
+  }
+
+  .navi-sidebox {
+    width: 150px;
+    padding: 0 8px;
+    box-sizing: border-box;
+    background-color: mat.get-theme-color($theme, primary, 90);
+  }
+
+  .navi-routebox {
+    padding: 8px;
+    box-sizing: border-box;
+    background-color: mat.get-theme-color($theme, tertiary, 90);
   }
 }

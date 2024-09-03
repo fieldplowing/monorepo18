@@ -14,11 +14,12 @@ import { TaskDatasource } from './task-datasource';
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { merge, tap } from 'rxjs';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-task',
   standalone: true,
-  imports: [MatTableModule, MatPaginatorModule, MatSortModule, CommonModule],
+  imports: [MatTableModule, MatPaginatorModule, MatSortModule, MatIconModule, CommonModule],
   templateUrl: './task.component.html',
   styleUrl: './task.component.scss',
 })
@@ -93,5 +94,9 @@ export class TaskComponent implements AfterViewInit {
     this.statusService.update(this.status);
     // ルートパラメータでページ遷移
     this.router.navigate(['detail'], { relativeTo: this.route });
+  }
+
+  clickDel(row: number){
+    console.log('DeleteRow=' + row);
   }
 }

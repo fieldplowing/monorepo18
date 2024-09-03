@@ -17,25 +17,18 @@ $theme: m3-theme.$light-theme;
 $dark-theme: m3-theme.$dark-theme; // $light-theme or $dark-theme
 // 使用している各コンポーネントのテーマ ミックスインをインポートすることもできます。
 :root {
+  @include mat.core-theme(m3-theme.$light-theme);
   @include mat.all-component-themes(m3-theme.$light-theme);
-  // Components themes
+  // Components themes mixin
   @include navi-component.theme($theme);
   // Add backwards compatibility styles for color variants
   @include mat.color-variants-backwards-compatibility($theme);
 
-  // @include mat.core-theme(m3-theme.$light-theme);
-  // @include mat.sidenav-theme(m3-theme.$light-theme);
-  // @include mat.toolbar-theme(m3-theme.$light-theme);
-  // @include mat.button-theme(m3-theme.$light-theme);
-  // @include mat.icon-button-theme(m3-theme.$light-theme);
-  // @include mat.icon-theme(m3-theme.$light-theme);
   // OS,ブラウザの設定でダークモードがオンになっている場合
   @media (prefers-color-scheme: dark) {
     @include mat.all-component-colors($dark-theme);
-
     // Components themes
     @include navi-component.theme($dark-theme);
-
     @include mat.color-variants-backwards-compatibility($dark-theme);
   }
 }

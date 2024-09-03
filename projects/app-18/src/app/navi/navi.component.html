@@ -1,27 +1,27 @@
-<div class="example-container">
-  <mat-toolbar class="example-toolbar">
-    @if (isHandset$ | async) {
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-      >
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-    }
+<div class="navi-container">
+  <mat-toolbar class="navi-toolbar">
+    <button
+      class="m3-button"
+      type="button"
+      aria-label="Toggle sidenav"
+      mat-icon-button
+      (mouseenter)="drawer.toggle()"
+    >
+      <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+    </button>
     <span>app-18</span>
   </mat-toolbar>
-  <mat-sidenav-container class="sexample-sidenav-container">
+  <mat-sidenav-container>
     <mat-sidenav
       #drawer
-      class="sidenav"
+      class="navi-sidebox"
       fixedTopGap="200"
       fixedBottomGap="150"
       fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false"
+      [mode]="'over'"
+      [opened]="false"
+      [attr.role]="'dialog'"
+      (mouseleave)="drawer.toggle()"
     >
       <!-- <mat-toolbar>Menu</mat-toolbar> -->
       <mat-nav-list>
@@ -31,14 +31,12 @@
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-      <!-- Add Content Here ※mat-sidenav-container内はtable行ヘッダのstickyが無効となる。-->
+      <!-- Add Content Here ※mmat-sidenav-content内はスクロールが復元しない。-->
       <!-- <app-list /> -->
       <!-- <router-outlet /> -->
     </mat-sidenav-content>
   </mat-sidenav-container>
-  <div class="sidenav-scroll-wrapper">
-    <div class="sidenav-content">
-      <router-outlet />
-    </div>
+  <div class="navi-routebox">
+    <router-outlet />
   </div>
 </div>
