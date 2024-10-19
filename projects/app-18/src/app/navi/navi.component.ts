@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, signal, ViewChild } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -6,6 +6,7 @@ import { MatSidenavContent, MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { ViewScrollDirective } from 'lib-18';
 
 @Component({
   selector: 'app-navi',
@@ -22,9 +23,13 @@ import { RouterLink, RouterOutlet } from '@angular/router';
     RouterLink,
     // outletを指定する場合
     RouterOutlet,
+    // Directive
+    ViewScrollDirective,
   ],
 })
 export class NaviComponent {
+  scrollSignal = signal(false);
+
   @ViewChild(MatSidenavContent) drawer!: MatSidenavContent;
   // 事前に設定した画面サイズHandsetの変更をObservableで受け取ることができます。
   // private breakpointObserver = inject(BreakpointObserver);

@@ -30,13 +30,26 @@
         <a mat-list-item [routerLink]="['/form']">form</a>
       </mat-nav-list>
     </mat-sidenav>
-    <mat-sidenav-content>
-      <!-- Add Content Here ※mmat-sidenav-content内はスクロールが復元しない。-->
-      <!-- <app-list /> -->
-      <!-- <router-outlet /> -->
-    </mat-sidenav-content>
+    <!-- Add Content Here ※mmat-sidenav-content内はスクロールが復元しない。-->
+    <!-- <mat-sidenav-content> </mat-sidenav-content> -->
+    <!-- <app-list /> -->
+    <!-- <router-outlet /> -->
   </mat-sidenav-container>
-  <div class="navi-routebox">
+  <!-- Directive Here スクロールとサイズ変更を検知。-->
+  <div
+    class="navi-routebox"
+    libViewScroll
+    #scroll="libScroll"
+    [(showIcon)]="scrollSignal"
+  >
     <router-outlet />
+  </div>
+  <div class="navi-scrollicon">
+    <!-- Directive Here scrollアイコンを表示・非表示するかどうか。-->
+    @if (scrollSignal()) {
+      <button mat-mini-fab (click)="scroll.top()">
+        <mat-icon>arrow_upward</mat-icon>
+      </button>
+    }
   </div>
 </div>

@@ -1,4 +1,4 @@
-<div #scrollRef class="mat-elevation-z2">
+<div class="mat-elevation-z2">
   <mat-table
     class="full-width-table"
     matSort
@@ -33,7 +33,7 @@
             <mat-header-cell *matHeaderCellDef mat-sort-header>
               {{ c.name }}
             </mat-header-cell>
-            <mat-cell *matCellDef="let row" (click)="clickRow(row.id)">
+            <mat-cell *matCellDef="let row" (click)="clickSelect(row.id)">
               {{ row[c.def] }}
             </mat-cell>
           }
@@ -47,16 +47,16 @@
     ></mat-header-row>
     <mat-row
       *matRowDef="let row; columns: displayedColumns"
-      [class.element-row]="row.id !== status.SelectedRow"
-      [class.select-row]="row.id === status.SelectedRow"
+      [class.element-row]="row.id !== dataSource.status.SelectedRow"
+      [class.select-row]="row.id === dataSource.status.SelectedRow"
     ></mat-row>
   </mat-table>
   <mat-paginator
     #paginator
-    [length]="status.Data.length"
-    [pageIndex]="status.PageIndex"
-    [pageSize]="status.PageSize"
-    [pageSizeOptions]="status.PageSizeOptions"
+    [length]="dataSource.data.length"
+    [pageIndex]="dataSource.status.PageIndex"
+    [pageSize]="dataSource.status.PageSize"
+    [pageSizeOptions]="dataSource.status.PageSizeOptions"
     aria-label="Select page"
   >
   </mat-paginator>

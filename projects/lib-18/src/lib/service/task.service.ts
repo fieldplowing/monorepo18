@@ -12,7 +12,7 @@ import { TaskItem } from '../model/item';
   providedIn: 'root',
 })
 export class TaskService {
-  /** InexDBをRxjsでラップする  */
+  /** InexedDBをRxjsでラップする  */
   private db: Subject<IDBDatabase> = new ReplaySubject<IDBDatabase>(1);
 
   private dbSettings = {

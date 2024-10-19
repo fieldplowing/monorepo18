@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
+import { computed, signal } from '@angular/core';
 // import { Lib18Service } from "lib-18";
 
 // TODO: Replace this with your own data model type
@@ -41,7 +42,12 @@ const EXAMPLE_DATA: ListItem[] = [
  * (including sorting, pagination, and filtering).
  */
 export class ListDataSource extends DataSource<ListItem> {
-  data: ListItem[] = EXAMPLE_DATA;
+  // data: ListItem[] = EXAMPLE_DATA;
+  dataSignal = signal<ListItem[]>(EXAMPLE_DATA);
+  data = computed(() => {
+    return this.dataSignal().filter((item) => item.name !== undefined);
+  });
+
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
 
@@ -66,7 +72,7 @@ export class ListDataSource extends DataSource<ListItem> {
         this.sort.sortChange,
       ).pipe(
         map(() => {
-          return this.getPagedData(this.getSortedData([...this.data]));
+          return this.getPagedData(this.getSortedData([...this.data()]));
         }),
       );
     } else {
