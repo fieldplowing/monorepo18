@@ -1,5 +1,5 @@
 import { Component, signal, ViewChild } from '@angular/core';
-import { AsyncPipe } from '@angular/common';
+// import { AsyncPipe } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavContent, MatSidenavModule } from '@angular/material/sidenav';
@@ -19,7 +19,7 @@ import { ViewScrollDirective } from 'lib-18';
     MatSidenavModule,
     MatListModule,
     MatIconModule,
-    AsyncPipe,
+    // AsyncPipe,
     RouterLink,
     // outletを指定する場合
     RouterOutlet,

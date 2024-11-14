@@ -15,15 +15,15 @@ export class StatusItemService {
     return this.SignalStatus();
   });
   readonly data = computed(() => {
-    // return this.SignalData();
+    return this.SignalData();
     // フィルター
-    return this.SignalData().filter((item) => {
-      if (this.SignalFilter()) {
-        return item.content.includes(this.SignalFilter());
-      } else {
-        return true;
-      }
-    });
+    // return this.SignalData().filter((item) => {
+    //   if (this.SignalFilter()) {
+    //     return item.content.includes(this.SignalFilter());
+    //   } else {
+    //     return true;
+    //   }
+    // });
   });
 
   /**

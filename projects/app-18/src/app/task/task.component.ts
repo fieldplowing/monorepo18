@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableModule, MatTable } from '@angular/material/table';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Column, TaskDatasource, TASKCOLUMN, TaskItem } from 'lib-18';
 
 @Component({
@@ -15,6 +16,7 @@ import { Column, TaskDatasource, TASKCOLUMN, TaskItem } from 'lib-18';
     MatPaginatorModule,
     MatSortModule,
     MatIconModule,
+    MatProgressSpinnerModule,
     CommonModule,
   ],
   templateUrl: './task.component.html',

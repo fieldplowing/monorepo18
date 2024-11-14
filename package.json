@@ -4,9 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
+    "build": "ng build lib-18  && ng build app-18",
+    "watch": "ng build lib-18 --watch --configuration development",
     "lint": "ng lint"
   },
   "private": true,

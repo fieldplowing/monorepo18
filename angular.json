@@ -20,9 +20,7 @@
             "outputPath": "dist/app-18",
             "index": "projects/app-18/src/index.html",
             "browser": "projects/app-18/src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "projects/app-18/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -31,9 +29,7 @@
                 "input": "projects/app-18/public"
               }
             ],
-            "styles": [
-              "projects/app-18/src/styles.scss"
-            ],
+            "styles": ["projects/app-18/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -41,7 +37,7 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
+                  "maximumWarning": "900kB",
                   "maximumError": "1MB"
                 },
                 {
@@ -62,6 +58,9 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "proxyConfig": "projects/app-18/src/proxy.conf.json"
+          },
           "configurations": {
             "production": {
               "buildTarget": "app-18:build:production"
@@ -78,10 +77,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "projects/app-18/tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -90,9 +86,7 @@
                 "input": "projects/app-18/public"
               }
             ],
-            "styles": [
-              "projects/app-18/src/styles.scss"
-            ],
+            "styles": ["projects/app-18/src/styles.scss"],
             "scripts": []
           }
         },
@@ -133,10 +127,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "tsConfig": "projects/lib-18/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
+            "polyfills": ["zone.js", "zone.js/testing"]
           }
         },
         "lint": {
@@ -153,8 +144,6 @@
     }
   },
   "cli": {
-    "schematicCollections": [
-      "@angular-eslint/schematics"
-    ]
+    "schematicCollections": ["@angular-eslint/schematics"]
   }
 }

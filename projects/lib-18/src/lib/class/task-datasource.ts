@@ -5,229 +5,7 @@ import { inject } from '@angular/core';
 import { StatusItemService } from '../service/status-item.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-
-const FETCH_DATA: Item[] = [
-  {
-    id: 1,
-    title: 'Hydrogen',
-    status: '',
-    category: '',
-    content: '',
-    accessCount: 0,
-    updateCount: 0,
-    createdAt: '',
-    updatedAt: '25/8/10',
-  },
-  {
-    id: 2,
-    title: 'Helium',
-    status: '',
-    category: '',
-    content: '',
-    accessCount: 0,
-    updateCount: 0,
-    createdAt: '',
-    updatedAt: '25/7/10',
-  },
-  {
-    id: 3,
-    title: 'Lithium',
-    status: '',
-    category: '',
-    content: '',
-    accessCount: 0,
-    updateCount: 0,
-    createdAt: '',
-    updatedAt: '',
-  },
-  {
-    id: 4,
-    title: 'Beryllium',
-    status: '',
-    category: '',
-    content: '',
-    accessCount: 0,
-    updateCount: 0,
-    createdAt: '',
-    updatedAt: '',
-  },
-  {
-    id: 5,
-    title: 'Boron',
-    status: '',
-    category: '',
-    content: '',
-    accessCount: 0,
-    updateCount: 0,
-    createdAt: '',
-    updatedAt: '',
-  },
-  {
-    id: 6,
-    title: 'Carbon',
-    status: '',
-    category: '',
-    content: '',
-    accessCount: 0,
-    updateCount: 0,
-    createdAt: '',
-    updatedAt: '',
-  },
-  {
-    id: 7,
-    title: 'Nitrogen',
-    status: '',
-    category: '',
-    content: '',
-    accessCount: 0,
-    updateCount: 0,
-    createdAt: '',
-    updatedAt: '',
-  },
-  {
-    id: 8,
-    title: 'Oxygen',
-    status: '',
-    category: '',
-    content: '',
-    accessCount: 0,
-    updateCount: 0,
-    createdAt: '',
-    updatedAt: '',
-  },
-  {
-    id: 9,
-    title: 'Fluorine',
-    status: '',
-    category: '',
-    content: '',
-    accessCount: 0,
-    updateCount: 0,
-    createdAt: '',
-    updatedAt: '',
-  },
-  {
-    id: 10,
-    title: 'Neon',
-    status: '',
-    category: '',
-    content: '',
-    accessCount: 0,
-    updateCount: 0,
-    createdAt: '',
-    updatedAt: '',
-  },
-  {
-    id: 11,
-    title: 'Sodium',
-    status: '',
-    category: '',
-    content: '',
-    accessCount: 0,
-    updateCount: 0,
-    createdAt: '',
-    updatedAt: '',
-  },
-  {
-    id: 12,
-    title: 'Magnesium',
-    status: '',
-    category: '',
-    content: '',
-    accessCount: 0,
-    updateCount: 0,
-    createdAt: '',
-    updatedAt: '',
-  },
-  {
-    id: 13,
-    title: 'Aluminum',
-    status: '',
-    category: '',
-    content: '',
-    accessCount: 0,
-    updateCount: 0,
-    createdAt: '',
-    updatedAt: '',
-  },
-  {
-    id: 14,
-    title: 'Silicon',
-    status: '',
-    category: '',
-    content: '',
-    accessCount: 0,
-    updateCount: 0,
-    createdAt: '',
-    updatedAt: '',
-  },
-  {
-    id: 15,
-    title: 'Phosphorus',
-    status: '',
-    category: '',
-    content: '',
-    accessCount: 0,
-    updateCount: 0,
-    createdAt: '',
-    updatedAt: '',
-  },
-  {
-    id: 16,
-    title: 'Sulfur',
-    status: '',
-    category: '',
-    content: '',
-    accessCount: 0,
-    updateCount: 0,
-    createdAt: '',
-    updatedAt: '',
-  },
-  {
-    id: 17,
-    title: 'Chlorine',
-    status: '',
-    category: '',
-    content: '',
-    accessCount: 0,
-    updateCount: 0,
-    createdAt: '',
-    updatedAt: '',
-  },
-  {
-    id: 18,
-    title: 'Argon',
-    status: '',
-    category: '',
-    content: '',
-    accessCount: 0,
-    updateCount: 0,
-    createdAt: '',
-    updatedAt: '',
-  },
-  {
-    id: 19,
-    title: 'Potassium',
-    status: '',
-    category: '',
-    content: '',
-    accessCount: 0,
-    updateCount: 0,
-    createdAt: '',
-    updatedAt: '',
-  },
-  {
-    id: 20,
-    title: 'Calcium',
-    status: '',
-    category: '',
-    content: '',
-    accessCount: 0,
-    updateCount: 0,
-    createdAt: '',
-    updatedAt: '',
-  },
-];
+import { MemoService } from '../service/memo.service';
 
 /**
  * リストビューのデータソース。
@@ -235,12 +13,15 @@ const FETCH_DATA: Item[] = [
  *  (ソート、ページネーション、フィルタリングを含む)
  */
 export class TaskDatasource extends DataSource<Item> {
-  // view$ = new Observable<Item[]>();
   private view$ = new BehaviorSubject<Item[]>([]);
+  private memoService = inject(MemoService);
 
   private statusService = inject(StatusItemService);
   status = this.statusService.status();
   data = this.statusService.data();
+
+  private loading$ = new BehaviorSubject<boolean>(false);
+  loading = this.loading$.asObservable();
 
   paginator!: MatPaginator;
   sort!: MatSort;
@@ -252,16 +33,29 @@ export class TaskDatasource extends DataSource<Item> {
   /**
    * データをロードします。
    */
-  loadData() {
+  async loadData() {
+    // Spinner true
+    this.loading$.next(true);
+
     console.log('Load data:', this.data.length);
     if (this.data.length === 0) {
       // データをFetch
-      this.data = FETCH_DATA;
+      this.data = await this.memoService.getAll();
       // Fetchデータからデータソースを設定
       this.statusService.updateData(this.data);
     }
     // 表示データnext
     this.view$.next(this.getPagedData(this.getSortedData([...this.data])));
+    // if (this.data.length === 0) {
+    //   // データをFetch
+    //   this.memoService.getAll().subscribe((res) => {
+    //     // Fetchデータからデータソースを設定
+    //     this.data = res;
+    //     this.statusService.updateData(this.data);
+    //   });
+    // }
+    // Spinner false
+    this.loading$.next(false);
   }
   /**
    * ページ遷移前のステータスを保管します。
@@ -315,6 +109,7 @@ export class TaskDatasource extends DataSource<Item> {
   override disconnect(): void {
     console.log('DisConnecting data source');
     this.view$.complete();
+    this.loading$.complete();
     // ステータスを更新します。
     this.statusService.update(this.status);
   }

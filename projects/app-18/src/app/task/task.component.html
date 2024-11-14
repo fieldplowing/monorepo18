@@ -10,17 +10,21 @@
       <ng-container [matColumnDef]="c.def">
         @switch (c.def) {
           @case ("id") {
-            <mat-header-cell *matHeaderCellDef>{{ c.name }}</mat-header-cell>
-            <mat-cell *matCellDef="let row; index as i">
+            <mat-header-cell *matHeaderCellDef class="column-id">{{
+              c.name
+            }}</mat-header-cell>
+            <mat-cell *matCellDef="let row; index as i" class="column-id">
               {{ paginator.pageSize * paginator.pageIndex + i + 1 }}
             </mat-cell>
           }
           @case ("delete") {
-            <mat-header-cell *matHeaderCellDef>{{ c.name }}</mat-header-cell>
-            <mat-cell *matCellDef="let row"
+            <mat-header-cell *matHeaderCellDef class="column-id">{{
+              c.name
+            }}</mat-header-cell>
+            <mat-cell *matCellDef="let row" class="column-id"
               >{{ row[c.def] }}
               <button
-                class="m3-button"
+                class="del-icon"
                 type="button"
                 mat-icon-button
                 (click)="clickDel(row.id)"
@@ -60,4 +64,9 @@
     aria-label="Select page"
   >
   </mat-paginator>
+</div>
+<div class="spinner-container">
+  @if (dataSource.loading | async) {
+    <mat-spinner diameter="70"></mat-spinner>
+  }
 </div>
