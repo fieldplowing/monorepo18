@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, viewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
@@ -23,9 +23,9 @@ import { Column, TaskDatasource, TASKCOLUMN, TaskItem } from 'lib-18';
   styleUrl: './task.component.scss',
 })
 export class TaskComponent implements AfterViewInit {
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatTable) table!: MatTable<TaskItem>;
+  readonly paginator = viewChild.required(MatPaginator);
+  readonly sort = viewChild.required(MatSort);
+  readonly table = viewChild.required(MatTable);
   dataSource = new TaskDatasource();
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
@@ -57,9 +57,9 @@ export class TaskComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     // コンポーネントのビューが初期化されたあとに 1 回実行されます。
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+    this.dataSource.sort = this.sort();
+    this.dataSource.paginator = this.paginator();
+    this.table().dataSource = this.dataSource;
   }
 
   clickSelect(row: number) {

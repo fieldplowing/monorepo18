@@ -1,4 +1,4 @@
-import { Component, signal, ViewChild } from '@angular/core';
+import { Component, signal, viewChild } from '@angular/core';
 // import { AsyncPipe } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -30,7 +30,7 @@ import { ViewScrollDirective } from 'lib-18';
 export class NaviComponent {
   scrollSignal = signal(false);
 
-  @ViewChild(MatSidenavContent) drawer!: MatSidenavContent;
+  readonly drawer = viewChild.required(MatSidenavContent);
   // 事前に設定した画面サイズHandsetの変更をObservableで受け取ることができます。
   // private breakpointObserver = inject(BreakpointObserver);
 

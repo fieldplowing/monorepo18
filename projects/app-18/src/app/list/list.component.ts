@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, viewChild } from '@angular/core';
 import { MatTableModule, MatTable } from '@angular/material/table';
 import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
 import { MatSortModule, MatSort } from '@angular/material/sort';
@@ -14,9 +14,9 @@ import { Router, ActivatedRoute } from '@angular/router';
   imports: [MatTableModule, MatPaginatorModule, MatSortModule],
 })
 export class ListComponent implements AfterViewInit {
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatTable) table!: MatTable<ListItem>;
+  readonly paginator = viewChild.required(MatPaginator);
+  readonly sort = viewChild.required(MatSort);
+  readonly table = viewChild.required(MatTable);
   dataSource = new ListDataSource();
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
@@ -28,9 +28,9 @@ export class ListComponent implements AfterViewInit {
   ) {}
 
   ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+    this.dataSource.sort = this.sort();
+    this.dataSource.paginator = this.paginator();
+    this.table().dataSource = this.dataSource;
   }
 
   clickRow() {
