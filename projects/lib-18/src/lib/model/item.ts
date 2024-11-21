@@ -1,4 +1,5 @@
 export interface Item {
+  _id: string;
   id: number;
   status: string;
   category: string;

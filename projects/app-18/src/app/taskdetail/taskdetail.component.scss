@@ -25,3 +25,40 @@
 .col:last-child {
   margin-right: 0;
 }
+.details-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.details-container > * {
+  // width: 98%;
+  // margin-left: 12px;
+  align-items: flex-start;
+}
+
+.save-container {
+  position: fixed;
+  cursor: pointer;
+  bottom: 2%;
+  z-index: 99;
+  opacity: 0.2;
+  left: 5%;
+}
+.back-container {
+  position: fixed;
+  cursor: pointer;
+  bottom: 2%;
+  z-index: 99;
+  opacity: 0.5;
+  right: 5%;
+}
+.save-container:hover,
+.back-container:hover {
+  opacity: 1;
+}
+.mat-mdc-unelevated-button.mat-primary,
+.mat-mdc-raised-button.mat-primary,
+.mat-mdc-fab.mat-primary,
+.mat-mdc-mini-fab.mat-primary {
+  background-color: rgba(24, 235, 70, 0.8);
+}
