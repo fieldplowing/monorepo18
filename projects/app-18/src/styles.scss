@@ -1,53 +1,27 @@
-// Custom Theming for Angular Material
+// Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use "@angular/material" as mat;
-// Plus imports for other components in your app.
-@use "../src/styles/m3-theme";
-@use "../src/styles/navi-component.theme";
+@use "../src/styles/mat-overrides.mixin";
 
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// このミックスインを含めるのは 1 回だけにしてください！
-@include mat.elevation-classes();
-@include mat.app-background();
-
-// Include theme styles for core and each component used in your app.
-// Light Theme created by ng generate @angular-material:m3-theme
-$theme: m3-theme.$light-theme;
-// Dark Theme created by ng generate @angular-material:m3-theme
-$dark-theme: m3-theme.$dark-theme; // $light-theme or $dark-theme
-// 使用している各コンポーネントのテーマ ミックスインをインポートすることもできます。
 :root {
-  @include mat.elevation-classes();
-  @include mat.app-background();
-  @include mat.all-component-themes(m3-theme.$light-theme);
-  // Components themes mixin
-  @include navi-component.theme($theme);
-  // Add backwards compatibility styles for color variants
-  @include mat.color-variants-backwards-compatibility($theme);
-
-  // OS,ブラウザの設定でダークモードがオンになっている場合
-  @media (prefers-color-scheme: dark) {
-    @include mat.all-component-colors($dark-theme);
-    // Components themes
-    @include navi-component.theme($dark-theme);
-    @include mat.color-variants-backwards-compatibility($dark-theme);
-  }
+  color-scheme: light dark;
+  @include mat.theme(
+    (
+      color: mat.$azure-palette,
+      typography: Roboto,
+      density: 0,
+    )
+  );
 }
 
-// Comment out the line below if you want to use the pre-defined typography utility classes.
-// For more information: https://material.angular.io/guide/typography#using-typography-styles-in-your-application.
-// @include mat.typography-hierarchy($app-18-theme);
-
-// Comment out the line below if you want to use 非推奨の `color` 入力
-// @include mat.color-variants-backwards-compatibility($app-18-theme);
-/* You can add global styles to this file, and also import other style files */
-
-html,
 body {
-  height: 100%;
-}
-body {
-  margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  margin: 0;
+  padding: 30px;
+  height: 100%;
+  @include mat-overrides.mixin();
+}
+
+html {
+  height: 100%;
 }

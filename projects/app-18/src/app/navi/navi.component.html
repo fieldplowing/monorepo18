@@ -1,13 +1,13 @@
 <div class="navi-container">
   <mat-toolbar class="navi-toolbar">
     <button
-      class="m3-button"
+      class="menu-icon"
       type="button"
       aria-label="Toggle sidenav"
       mat-icon-button
       (click)="drawer.toggle()"
     >
-      <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      <mat-icon aria-label="Side nav toggle icon" fontIcon="menu"></mat-icon>
     </button>
     <span>app-18</span>
   </mat-toolbar>
@@ -15,6 +15,7 @@
     <mat-sidenav
       #drawer
       class="navi-sidebox"
+      autoFocus="false"
       fixedTopGap="200"
       fixedBottomGap="150"
       fixedInViewport

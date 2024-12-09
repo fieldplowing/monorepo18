@@ -3,9 +3,9 @@ import { Component, inject, viewChild } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { MatSelectModule } from '@angular/material/select';
-import { MatRadioModule } from '@angular/material/radio';
-import { ActivatedRoute, Router } from '@angular/router';
+// import { MatSelectModule } from '@angular/material/select';
+// import { MatRadioModule } from '@angular/material/radio';
+// import { ActivatedRoute, Router } from '@angular/router';
 import { Item, StatusItemService } from 'lib-18';
 import { Location } from '@angular/common';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
@@ -19,8 +19,8 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [
     MatInputModule,
     MatButtonModule,
-    MatSelectModule,
-    MatRadioModule,
+    // MatSelectModule,
+    // MatRadioModule,
     MatIconModule,
     ReactiveFormsModule,
   ],
@@ -45,8 +45,8 @@ export class TaskdetailComponent {
   private task = {} as Item;
 
   constructor(
-    private route: ActivatedRoute,
-    private router: Router,
+    // private route: ActivatedRoute,
+    // private router: Router,
     private location: Location,
   ) {
     // 対象のDataをFormにパッチする
@@ -55,6 +55,11 @@ export class TaskdetailComponent {
         this.editForm.patchValue(v);
       }
     });
+  }
+
+  clickContentClear() {
+    // closeアイコン
+    this.editForm.controls.content.setValue('');
   }
 
   onSubmit(): void {

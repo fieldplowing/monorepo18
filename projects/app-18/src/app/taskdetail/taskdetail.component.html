@@ -1,28 +1,20 @@
 <form [formGroup]="editForm" novalidate (ngSubmit)="onSubmit()">
   <div class="details-container">
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="fill">
       <mat-label>title</mat-label>
       <input matInput type="text" formControlName="title" placeholder="Title" />
     </mat-form-field>
     <ng-container>
       <mat-form-field>
-        <input
-          matInput
-          type="text"
-          formControlName="category"
-          placeholder="Category"
-        />
+        <mat-label>category</mat-label>
+        <input matInput type="text" formControlName="category" />
       </mat-form-field>
       <mat-form-field>
-        <input
-          matInput
-          type="text"
-          formControlName="status"
-          placeholder="Status"
-        />
+        <mat-label>status</mat-label>
+        <input matInput type="text" formControlName="status" />
       </mat-form-field>
     </ng-container>
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="fill">
       <mat-label>content</mat-label>
 
       <textarea
@@ -35,6 +27,16 @@
         cdkAutosizeMaxRows="25"
       >
       </textarea>
+      @if (editForm.controls.content) {
+        <button
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="clickContentClear()"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      }
     </mat-form-field>
   </div>
   <button

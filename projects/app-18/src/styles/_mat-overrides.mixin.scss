@@ -1,0 +1,44 @@
+@use "@angular/material" as mat;
+
+@mixin mixin() {
+  @include mat.toolbar-overrides(
+    (
+      container-background-color: var(--mat-sys-primary),
+      container-text-color: var(--mat-sys-on-tertiary),
+    )
+  );
+  @include mat.icon-button-overrides(
+    (
+      icon-size: 24px,
+      // disabled-icon-color: yellow,
+      icon-color: orange,
+      ripple-color: orange,
+      state-layer-color: orange,
+      hover-state-layer-opacity: 0.5,
+    )
+  );
+  @include mat.sidenav-overrides(
+    (
+      container-shape: 24px,
+      container-width: 120px,
+      container-background-color: whitesmoke,
+      // container-text-color: red,
+      // content-background-color: white,
+      // content-text-color: red,
+      // scrim-color:white,,
+      // container-elevation-shadow: 24,
+    )
+  );
+  @include mat.form-field-overrides(
+    (
+      filled-container-color: white,
+      filled-label-text-color: blue,
+      filled-focus-label-text-color: blue,
+      filled-hover-label-text-color: blue,
+      filled-container-shape: 12px,
+      focus-state-layer-opacity: 0.1,
+      filled-focus-active-indicator-color: red,
+      filled-caret-color: orange,
+    )
+  );
+}
