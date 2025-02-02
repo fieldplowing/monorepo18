@@ -5,6 +5,7 @@ export interface Status {
   PageSizeOptions: number[];
   SortActive: string;
   SortDirection: string;
+  ToggleDetail: boolean;
 }
 export const STATUSDEFAULT: Status = {
   SelectedRow: 0,
@@ -13,4 +14,5 @@ export const STATUSDEFAULT: Status = {
   PageSizeOptions: [5, 10, 20],
   SortActive: 'updatedAt',
   SortDirection: 'desc',
+  ToggleDetail: false,
 };

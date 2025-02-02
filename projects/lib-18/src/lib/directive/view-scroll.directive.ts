@@ -20,7 +20,7 @@ export class ViewScrollDirective implements AfterViewInit, OnDestroy {
     private _elementRef: ElementRef<HTMLElement>,
   ) {
     // const nativeElement = _elementRef.nativeElement;
-    console.log('dom nativeElement:' + _elementRef.nativeElement);
+    console.log('dom nativeElement:' + _elementRef.nativeElement.tagName);
   }
   /** Whether the icon is show. アイコンが表示・非表示するかどうか*/
   // これはモデル入力です。

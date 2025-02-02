@@ -1,10 +1,10 @@
-<form [formGroup]="editForm" novalidate (ngSubmit)="onSubmit()">
+<form [formGroup]="editForm" novalidate>
   <div class="details-container">
     <mat-form-field appearance="fill">
       <mat-label>title</mat-label>
       <input matInput type="text" formControlName="title" placeholder="Title" />
     </mat-form-field>
-    <ng-container>
+    @if (status.ToggleDetail) {
       <mat-form-field>
         <mat-label>category</mat-label>
         <input matInput type="text" formControlName="category" />
@@ -13,21 +13,21 @@
         <mat-label>status</mat-label>
         <input matInput type="text" formControlName="status" />
       </mat-form-field>
-    </ng-container>
+    }
     <mat-form-field appearance="fill">
       <mat-label>content</mat-label>
 
       <textarea
         matInput
+        libCursorPosition
         formControlName="content"
         placeholder="Content"
         cdkTextareaAutosize
-        #autosize="cdkTextareaAutosize"
         cdkAutosizeMinRows="1"
-        cdkAutosizeMaxRows="25"
+        cdkAutosizeMaxRows="256"
       >
       </textarea>
-      @if (editForm.controls.content) {
+      @if (editForm.controls.content.value) {
         <button
           matSuffix
           mat-icon-button
@@ -45,6 +45,7 @@
     class="save-container"
     type="submit"
     [disabled]="editForm.invalid"
+    (click)="save()"
   >
     <mat-icon>save</mat-icon>
   </button>

@@ -6,7 +6,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableModule, MatTable } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { Column, TaskDatasource, TASKCOLUMN, TaskItem } from 'lib-18';
+import { Column, TaskDatasource, TASKCOLUMN } from 'lib-18';
 
 @Component({
   selector: 'app-task',

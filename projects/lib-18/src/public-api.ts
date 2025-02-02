@@ -11,4 +11,5 @@ export * from './lib/model/item';
 export * from './lib/model/column';
 export * from './lib/model/control';
 export * from './lib/directive/view-scroll.directive';
+export * from './lib/directive/cursor-position.directive';
 export * from './lib/class/task-datasource';

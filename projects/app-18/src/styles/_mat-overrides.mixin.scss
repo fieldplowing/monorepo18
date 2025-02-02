@@ -11,7 +11,7 @@
     (
       icon-size: 24px,
       // disabled-icon-color: yellow,
-      icon-color: orange,
+      icon-color: blue,
       ripple-color: orange,
       state-layer-color: orange,
       hover-state-layer-opacity: 0.5,
@@ -20,13 +20,13 @@
   @include mat.sidenav-overrides(
     (
       container-shape: 24px,
-      container-width: 120px,
+      container-width: 70px,
       container-background-color: whitesmoke,
       // container-text-color: red,
       // content-background-color: white,
       // content-text-color: red,
       // scrim-color:white,,
-      // container-elevation-shadow: 24,
+       // container-elevation-shadow: 24,
     )
   );
   @include mat.form-field-overrides(
